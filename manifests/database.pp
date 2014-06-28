@@ -1,36 +1,32 @@
 # == Define: windows_oradb::database
 #
-define windows_oradb::database ( $oracleBase               = undef,
-                                 $oracleHome               = undef,
-                                 $version                  = "11.2",
-                                 $user                     = 'oracle',
-                                 $group                    = 'dba',
-                                 $archiveFilename          = 'p10404530_112030_MSWIN-x86-64',
-                                 $installDir               = 'c:\Install',
-                                 $extractDir               = 'c:\Zipfiles',
-                                 $action                   = 'create',
-                                 $dbName                   = 'orcl',
-                                 $dbDomain                 = undef,
-                                 $sysPassword              = 'Welcome01',
-                                 $systemPassword           = 'Welcome01',
-                                 $dataFileDestination      = undef,
-                                 $recoveryAreaDestination  = undef,
-                                 $characterSet             = "AL32UTF8",
-                                 $nationalCharacterSet     = "UTF8",
-                                 $initParams               = undef,
-                                 $sampleSchema             = TRUE,
-                                 $memoryPercentage         = "40",
-                                 $memoryTotal              = "800",
-                                 $databaseType             = "MULTIPURPOSE",
-                                 $emConfiguration          = "NONE", # CENTRAL|LOCAL|ALL|NONE
-                                 $storageType              = "FS", #FS|CFS|ASM
-                                 $recoveryDiskgroup        = undef,
+define windows_oradb::database ( # General
+                                 $oracleHome     = undef,
+
+                                 # Reponsefile
+                                 $globalDbName   = undef,
+                                 $dbName         = undef,
+                                 $templateName   = undef,
+                                 $sysPassword    = undef,
+                                 $systemPassword = undef,
                                ) {
 
-  if (!( $version == "11.2")) {
-  fail("Unrecognized version")
+  if (!( $version == '11.2.0.3')){
+    fail("Unrecognized database install version, use 11.2.0.3")
+  }
+
+  file { "${installFolder}/dbca_${title}.rsp":
+    ensure  => present,
+    content => template("windows_oradb/dbca_${version}.rsp.erb"),
+  }
+
+  exec { "Install database ${title}":
+    command => "dbca.exe -silent -responseFile ${installFolder}\\dbca_${title}.rsp",
+    path => '${oracleHome}/bin',
+    #creates => $oracleHome,
+    require => File["${installFolder}/dbca_${title}.rsp"],
   }
 
 
-  }
+
 }
