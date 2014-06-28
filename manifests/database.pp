@@ -27,6 +27,4 @@ define windows_oradb::database ( # General
     require => File["${installFolder}/dbca_${title}.rsp"],
   }
 
-
-
 }
