@@ -45,7 +45,9 @@ define windows_oradb::installdb (
     command => "setup.exe -silent -responseFile ${installFolder}\\installdb_${title}.rsp",
     path => 'C:/Install/database',
     creates => $oracleHome,
-    require => File["${installFolder}/installdb_${title}.rsp"],
+    require => [Exec["Extract zip file 1"],
+                Exec["Extract zip file 2"],
+                File["${installFolder}/installdb_${title}.rsp"]],
   }
 
 }
