@@ -38,10 +38,10 @@ define windows_oradb::installdb (
 
   file { "${installFolder}/installdb_${title}.rsp":
     ensure  => present,
-    content => template("windows-oradb/installdb_${version}.rsp.erb"),
+    content => template("windows_oradb/installdb_${version}.rsp.erb"),
   }
 
-  exec { "Install oracle database ${title}":
+  exec { "Install ${title}":
     command => "setup.exe -silent -responseFile ${installFolder}\\installdb_${title}.rsp",
     path => 'C:/Install/database',
     creates => $oracleHome,
