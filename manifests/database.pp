@@ -15,9 +15,16 @@ define windows_oradb::database ( # General
     fail("Unrecognized database install version, use 11.2.0.3")
   }
 
+# Create response file
   file { "${installFolder}/dbca_${title}.rsp":
     ensure  => present,
     content => template("windows_oradb/dbca_${version}.rsp.erb"),
+  }
+
+# Copy template file
+  file { "${installFolder}/${templateName}":
+    ensure => present,
+    source => "puppet:///modules/windows_oradb/${templateName}",
   }
 
   exec { "Install database ${title}":
