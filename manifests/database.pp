@@ -2,6 +2,7 @@
 #
 define windows_oradb::database ( # General
                                  $oracleHome     = undef,
+				 $version	 = undef,
 
                                  # Reponsefile
                                  $globalDbName   = undef,
