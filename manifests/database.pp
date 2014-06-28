@@ -1,8 +1,9 @@
 # == Define: windows_oradb::database
 #
 define windows_oradb::database ( # General
-                                 $oracleHome     = undef,
-				 $version	 = undef,
+                                 $oracleHome    = undef,
+				                         $version	      = undef,
+                                 $installFolder = undef,
 
                                  # Reponsefile
                                  $globalDbName   = undef,
