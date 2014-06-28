@@ -1,6 +1,6 @@
-# == Define: windows-oradb::installdb
+# == Define: windows_oradb::installdb
 #
-define windows-oradb::installdb (
+define windows_oradb::installdb (
 
 # General
   $version        = undef,
