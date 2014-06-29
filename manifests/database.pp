@@ -34,9 +34,9 @@ define windows_oradb::database ( # General
   }
 
   exec { "Install database ${title}":
-    command  => "dbca -silent -responseFile ${installFolder}\\dbca_${title}.rsp",
-    path     => ${oracleHome}/bin
-    cwd      => $oracleHome,
+    command  => "C:/Oracle_Sys/nbcprod/product/11.2.0/db/BIN/dbca.bat -silent -responseFile C:\Install\\\dbca_${title}.rsp",
+    #path     => '${oracleHome}/bin',
+    #cwd      =>'${oracleHome}/bin',
     #creates => $oracleHome,
     require  => File["${installFolder}/dbca_${title}.rsp"],
   }
