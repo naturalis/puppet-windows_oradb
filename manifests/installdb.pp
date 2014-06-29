@@ -19,14 +19,12 @@ define windows_oradb::installdb (
     fail("Unrecognized database install version, use 11.2.0.3")
   }
 
-  notice($installFolder)
-  notice($version)
-
   exec { "Extract zip file 1":
     command => "7z.exe x -y \"$zipfilesFolder\\p10404530_112030_MSWIN-x86-64_1of7.zip\"",
     path    => "C:/Program Files/7-Zip;${::path}",
     cwd     => $installFolder,
     creates => "$installFolder/database/setup.exe",
+	logoutput => "always",
   }
 
   exec { "Extract zip file 2":
@@ -34,6 +32,7 @@ define windows_oradb::installdb (
     path    => "C:/Program Files/7-Zip;${::path}",
     cwd     => $installFolder,
     creates => "$installFolder/database/stage/Components/oracle.ctx",
+	logoutput => "always",
   }
 
   file { "${installFolder}/installdb_${title}.rsp":
@@ -48,6 +47,7 @@ define windows_oradb::installdb (
     require => [Exec["Extract zip file 1"],
                 Exec["Extract zip file 2"],
                 File["${installFolder}/installdb_${title}.rsp"]],
+	logoutput => "always",
   }
 
 }
