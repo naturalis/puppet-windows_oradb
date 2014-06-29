@@ -26,8 +26,8 @@ define windows_oradb::database ( # General
     source_permissions => ignore,
   }
 
-# Copy template file
-  file { "${installFolder}/${templateName}":
+# Copy templatefile to templates directory
+  file { "${oracleHome}/assistants/dbca/templates/${templateName}":
     ensure             => present,
     source             => "puppet:///modules/windows_oradb/${templateName}",
     source_permissions => ignore,
@@ -35,10 +35,11 @@ define windows_oradb::database ( # General
 
 # Execute dbca command  
   exec { "Install database ${title}":
-    command => 'C:\Windows\System32\cmd.exe /c C:/Oracle_Sys/nbcprod/product/11.2.0/db/BIN/dbca -silent -responseFile C:/Install/dbca_nbcprod.rsp',
-	#creates => $oracleHome,
-    require  => File["${installFolder}/dbca_${title}.rsp"],
-	logoutput => "on_failure",
+    command => 'C:\Windows\System32\cmd.exe /c C:/Oracle_Sys/nbcprod/product/11.2.0/db/BIN/dbca -progressOnly -responseFile C:/Install/dbca_nbcprod.rsp',
+	creates => "$installFolder/cfgtoollogs/dbca/$dbName",
+    require  => [File["${installFolder}/dbca_${title}.rsp"],
+	             File["${oracleHome}/assistants/dbca/templates/${templateName}"]],
+	logoutput => "always",
   }
 
 }
