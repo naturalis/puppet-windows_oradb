@@ -1,9 +1,9 @@
 # == Define: windows_oradb::database
 #
 define windows_oradb::database ( # General
-                                 $oracleHome    = undef,
-				                         $version	      = undef,
-                                 $installFolder = undef,
+                                 $oracleHome     = undef,
+				                 $version	     = undef,
+                                 $installFolder  = undef,
 
                                  # Reponsefile
                                  $globalDbName   = undef,
@@ -33,12 +33,12 @@ define windows_oradb::database ( # General
     source_permissions => ignore,
   }
 
+# Execute dbca command  
   exec { "Install database ${title}":
-    command  => "C:/Oracle_Sys/nbcprod/product/11.2.0/db/BIN/dbca.bat -silent -responseFile C:\Install\\\dbca_${title}.rsp",
-    #path     => '${oracleHome}/bin',
-    #cwd      =>'${oracleHome}/bin',
-    #creates => $oracleHome,
+    command => 'C:\Windows\System32\cmd.exe /c C:/Oracle_Sys/nbcprod/product/11.2.0/db/BIN/dbca -silent -responseFile C:/Install/dbca_nbcprod.rsp',
+	#creates => $oracleHome,
     require  => File["${installFolder}/dbca_${title}.rsp"],
+	logoutput => "on_failure",
   }
 
 }
