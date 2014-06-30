@@ -36,10 +36,10 @@ define windows_oradb::database ( # General
 
 # Execute dbca command
   exec { "Install database ${title}":
-  command => 'C:\Windows\System32\cmd.exe /c C:/Oracle_Sys/nbcprod/product/11.2/db/BIN/dbca -progressOnly -responseFile C:/Install/dbca_nbcprod.rsp',
+  command => 'C:\Windows\System32\cmd.exe /c C:/Oracle_Sys/nbcprod/product/11.2/db/BIN/dbca -silent -responseFile C:/Install/dbca_nbcprod.rsp',
 	#creates => "$oracleBase/admin/$dbName",
   require  => [File["${installFolder}/dbca_${title}.rsp"],
-	               File["${oracleHome}/assistants/dbca/templates/${templateName}"]],
+	             File["${oracleHome}/assistants/dbca/templates/${templateName}"]],
 	logoutput => "true",
   }
 
