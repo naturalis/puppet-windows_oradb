@@ -47,7 +47,7 @@ define windows_oradb::installdb (
     require => [Exec["Extract zip file 1"],
                 Exec["Extract zip file 2"],
                 File["${installFolder}/installdb_${title}.rsp"]],
-	logoutput => "true",
+    logoutput => "true",
   }
 
 }
