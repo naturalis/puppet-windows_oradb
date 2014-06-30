@@ -40,7 +40,7 @@ define windows_oradb::database ( # General
 	#creates => "$oracleBase/admin/$dbName",
     require  => [File["${installFolder}/dbca_${title}.rsp"],
 	             File["${oracleHome}/assistants/dbca/templates/${templateName}"]],
-	logoutput => "always",
+	logoutput => "true",
   }
 
 }
