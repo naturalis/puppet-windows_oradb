@@ -41,7 +41,7 @@ define windows_oradb::database ( # General
   require   => [File["${installFolder}/dbca_${title}.rsp"],
 	             File["${oracleHome}/assistants/dbca/templates/${templateName}"]],
 	logoutput => true,
-  timeout   => 1800,
+  timeout   => 0,
   }
 
 }
