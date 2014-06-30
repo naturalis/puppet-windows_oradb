@@ -20,19 +20,19 @@ define windows_oradb::installdb (
   }
 
   exec { "Extract zip file 1":
-    command => "7z.exe x -y \"$zipfilesFolder\\p10404530_112030_MSWIN-x86-64_1of7.zip\"",
-    path    => "C:/Program Files/7-Zip;${::path}",
-    cwd     => $installFolder,
-    creates => "$installFolder/database/setup.exe",
-	logoutput => "true",
+    command   => "7z.exe x -y \"$zipfilesFolder\\p10404530_112030_MSWIN-x86-64_1of7.zip\"",
+    path      => "C:/Program Files/7-Zip;${::path}",
+    cwd       => $installFolder,
+    creates   => "$installFolder/database/setup.exe",
+	  logoutput => on_failure,
   }
 
   exec { "Extract zip file 2":
-    command => "7z.exe x -y \"$zipfilesFolder\\p10404530_112030_MSWIN-x86-64_2of7.zip\"",
-    path    => "C:/Program Files/7-Zip;${::path}",
-    cwd     => $installFolder,
-    creates => "$installFolder/database/stage/Components/oracle.ctx",
-	logoutput => "true",
+    command   => "7z.exe x -y \"$zipfilesFolder\\p10404530_112030_MSWIN-x86-64_2of7.zip\"",
+    path      => "C:/Program Files/7-Zip;${::path}",
+    cwd       => $installFolder,
+    creates   => "$installFolder/database/stage/Components/oracle.ctx",
+	  logoutput => on_failure,
   }
 
   file { "${installFolder}/installdb_${title}.rsp":
@@ -41,13 +41,14 @@ define windows_oradb::installdb (
   }
 
   exec { "Install ${title}":
-    command => "setup.exe -silent -responseFile ${installFolder}\\installdb_${title}.rsp",
-    path => 'C:/Install/database',
+    command => "setup.exe -silent -waitforcompletion -nowait -responseFile ${installFolder}\\installdb_${title}.rsp",
+    path    => 'C:/Install/database',
     creates => $oracleHome,
     require => [Exec["Extract zip file 1"],
                 Exec["Extract zip file 2"],
                 File["${installFolder}/installdb_${title}.rsp"]],
-    logoutput => "true",
+    logoutput => true,
+    timeout   => 0,
   }
 
 }
