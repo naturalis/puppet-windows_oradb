@@ -2,8 +2,8 @@
 #
 define windows_oradb::database ( # General
                                  $oracleHome     = undef,
-                                 #oracleBase     = undef,
-                                 $version = undef,
+                                 $oracleBase     = undef,
+                                 $version        = undef,
                                  $installFolder  = undef,
 
                                  # Reponsefile
@@ -32,14 +32,11 @@ define windows_oradb::database ( # General
     source_permissions => ignore,
   }
 
-# Create exec_dbca.bat
-
-
 # Execute dbca command
   exec { "Create database ${title}":
     command   => "cmd.exe /c \"$oracleHome\\BIN\\dbca -silent -responseFile C:\\Install\\dbca_$title.rsp\"",
-    path      => 'C:\Windows\System32',
-    #creates  => "$oracleBase/admin/$dbName",
+    path      => "C:/Windows/System32",
+    creates   => "$oracleBase/admin/$dbName",
     require   => [File["${installFolder}/dbca_${title}.rsp"],
                   File["${oracleHome}/assistants/dbca/templates/${templateName}"]],
     logoutput => true,
