@@ -32,9 +32,6 @@ define windows_oradb::database ( # General
     source_permissions => ignore,
   }
 
-# Create exec_dbca.bat
-
-
 # Execute dbca command
   exec { "Create database ${title}":
     command   => "cmd.exe /c \"$oracleHome\\BIN\\dbca -silent -responseFile C:\\Install\\dbca_$title.rsp\"",
