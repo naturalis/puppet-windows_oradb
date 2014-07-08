@@ -27,9 +27,9 @@ define windows_oradb::database ( # General
 
 # Copy templatefile to templates directory
   file { "${oracleHome}/assistants/dbca/templates/${templateName}":
-  ensure             => present,
-  source             => "puppet:///modules/windows_oradb/${templateName}",
-  source_permissions => ignore,
+    ensure             => present,
+    source             => "puppet:///modules/windows_oradb/${templateName}",
+    source_permissions => ignore,
   } 
   
 # Execute dbca command
