@@ -26,13 +26,15 @@ define windows_oradb::database ( # General
   }
 
 # Copy templatefile to templates directory
-  file { "${oracleHome}/assistants/dbca/templates/${templateName}":
+  if ! ${oracleHome}/assistants/dbca/templates/${templateName} {
+    file { "${oracleHome}/assistants/dbca/templates/${templateName}":
     ensure             => present,
     source             => "puppet:///modules/windows_oradb/${templateName}",
     source_permissions => ignore,
-    onlyif             => "ls ${oracleHome}/assistants/dbca/templates/${templateName}",
-  }
-
+   }
+ } 
+  
+ 
 # Execute dbca command
   exec { "Create database ${title}":
     command   => "cmd.exe /c \"$oracleHome\\BIN\\dbca -silent -responseFile C:\\Install\\dbca_$title.rsp\"",
