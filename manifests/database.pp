@@ -30,7 +30,7 @@ define windows_oradb::database ( # General
     ensure             => present,
     source             => "puppet:///modules/windows_oradb/${templateName}",
     source_permissions => ignore,
-    unless             => "ls ${oracleHome}/assistants/dbca/templates/${templateName}",
+    onlyif             => "ls ${oracleHome}/assistants/dbca/templates/${templateName}",
   }
 
 # Execute dbca command
