@@ -29,8 +29,8 @@ define windows_oradb::database ( # General
   file { "${oracleHome}/assistants/dbca/templates/${templateName}":
     ensure             => present,
     source             => "puppet:///modules/windows_oradb/${templateName}",
-    replace            => false,
     source_permissions => ignore,
+    unless             => "ls ${oracleHome}/assistants/dbca/templates/${templateName}",
   }
 
 # Execute dbca command
