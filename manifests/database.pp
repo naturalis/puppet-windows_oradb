@@ -1,18 +1,17 @@
 # == Define: windows_oradb::database
 #
 define windows_oradb::database ( # General
-                                 $oracleHome     = undef,
-                                 $oracleBase     = undef,
-                                 $version        = undef,
-                                 $installFolder  = undef,
-
-                                 # Reponsefile
-                                 $globalDbName   = undef,
-                                 $dbName         = undef,
-                                 $templateName   = undef,
-                                 $sysPassword    = undef,
-                                 $systemPassword = undef,
-                               ) {
+  $oracleHome     = undef,
+  $oracleBase     = undef,
+  $version        = undef,
+  $installFolder  = undef,
+# Reponsefile
+  $globalDbName   = undef,
+  $dbName         = undef,
+  $templateName   = undef,
+  $sysPassword    = undef,
+  $systemPassword = undef,
+  ) {
 
   if (!( $version == '11.2.0.3')){
     fail("Unrecognized database install version, use 11.2.0.3")
