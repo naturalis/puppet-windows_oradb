@@ -1,6 +1,7 @@
 # == Define: windows_oradb::database
 #
-define windows_oradb::database ( # General
+define windows_oradb::database ( 
+# General
   $oracleHome     = undef,
   $oracleBase     = undef,
   $version        = undef,
