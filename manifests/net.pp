@@ -9,9 +9,9 @@ define windows_oradb::net (
   $installFolder = undef,
 
 # Reponsefile
-  #$listenerNumber    = undef,
-  #$listenerNames     = undef,
-  #$listenerProtocols = undef,
+  #$listenerNumber   = undef,
+  #$listenerNames    = undef,
+  $listenerProtocols = undef,
   ) {
 
   if (!( $version == '11.2.0.3')){
