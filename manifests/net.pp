@@ -11,7 +11,10 @@ define windows_oradb::net (
 # Reponsefile
   #$listenerNumber   = undef,
   #$listenerNames    = undef,
+  $installType       = undef,
   $listenerProtocols = undef,
+  $nsnProtocols      = undef,
+  
   ) {
 
   if (!( $version == '11.2.0.3')){
