@@ -39,7 +39,7 @@ define windows_oradb::installdb (
     ensure  => present,
     content => template("windows_oradb/installdb_${version}.rsp.erb"),'
     require => [Exec["Extract zip file 1"], 
-                Exec["Extract zip file 2"], 
+                Exec["Extract zip file 2"]], 
   }
 
   exec { "Install ${title}":
