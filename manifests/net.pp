@@ -32,7 +32,7 @@ define windows_oradb::net (
   exec { "Install Oracle net ${title}":
     command   => "cmd.exe /c \"$oracleHome\\BIN\\netca -silent -responseFile C:\\Install\\netca_$title.rsp\"",
     path      => $::path,
-    #creates   => "$oracleBase/admin/$dbName",
+    creates   => "$oracleHome/network/admin/listener.ora",
     require   => File["${installFolder}/netca_${title}.rsp"],
     logoutput => true,
     timeout   => 0,
