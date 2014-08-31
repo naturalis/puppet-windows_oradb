@@ -110,15 +110,15 @@ NAMING_METHODS={"TNSNAMES","ONAMES","HOSTNAME"}
 
 #NSN_NUMBER;Number;Number of NetService Names
 # A typical install sets one net service name
-NSN_NUMBER=1
+NSN_NUMBER=2
 
 #NSN_NAMES;StringList;list of Net Service names
 # A typical install sets net service name to "EXTPROC_CONNECTION_DATA"
-NSN_NAMES={"EXTPROC_CONNECTION_DATA"}
+NSN_NAMES={"EXTPROC_CONNECTION_DATA","<%= @title %>"}
 
 #NSN_SERVICE;StringList;Oracle11g database's service name
 # A typical install sets Oracle11g database's service name to "PLSExtProc"
-NSN_SERVICE={"PLSExtProc"}
+NSN_SERVICE={"PLSExtProc","<%= @title %>"}
 
 #NSN_PROTOCOLS;StringList;list of coma separated strings of Net Service Name protocol parameters
 # The possible values for net service name protocol parameters are:
