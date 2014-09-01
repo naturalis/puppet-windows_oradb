@@ -15,9 +15,7 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+Install Oracle DB on Windows. Deploy with puppet-windows_role_oradb.
 
 ## Module Description
 
