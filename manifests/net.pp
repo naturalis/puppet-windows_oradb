@@ -13,7 +13,8 @@ define windows_oradb::net (
   #$listenerNames    = undef,
   $installType       = undef,
   $listenerProtocols = undef,
-  $nsnProtocols      = undef,
+  $nsnProtocol       = undef,
+  $nsnPort:          = undef,
   
   ) {
 
