@@ -19,7 +19,7 @@ define windows_oradb::installdb (
     fail("Unrecognized database install version, use 11.2.0.3")
   }
 
-  exec { "Extract zip file 1":
+  exec { "Extract zip file 1 for ${title}":
     command   => "7z.exe x -y \"$zipfilesFolder\\p10404530_112030_MSWIN-x86-64_1of7.zip\"",
     path      => "C:/Program Files/7-Zip;${::path}",
     cwd       => $installFolder,
@@ -27,7 +27,7 @@ define windows_oradb::installdb (
     logoutput => on_failure,
   }
 
-  exec { "Extract zip file 2":
+  exec { "Extract zip file 2 for ${title}":
     command   => "7z.exe x -y \"$zipfilesFolder\\p10404530_112030_MSWIN-x86-64_2of7.zip\"",
     path      => "C:/Program Files/7-Zip;${::path}",
     cwd       => $installFolder,
