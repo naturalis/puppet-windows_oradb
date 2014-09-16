@@ -68,7 +68,7 @@
          <temporary>false</temporary>
          <online>true</online>
          <status>0</status>
-         <size unit="MB">32256</size>
+         <size unit="MB">322</size>
          <reuse>true</reuse>
          <autoExtend>true</autoExtend>
          <increment unit="MB">128</increment>
@@ -79,7 +79,7 @@
          <temporary>false</temporary>
          <online>true</online>
          <status>0</status>
-         <size unit="MB">12288</size>
+         <size unit="MB">122</size>
          <reuse>true</reuse>
          <autoExtend>true</autoExtend>
          <increment unit="MB">128</increment>
@@ -90,7 +90,7 @@
          <temporary>false</temporary>
          <online>true</online>
          <status>0</status>
-         <size unit="MB">1945</size>
+         <size unit="MB">19</size>
          <reuse>true</reuse>
          <autoExtend>true</autoExtend>
          <increment unit="KB">8</increment>
@@ -123,7 +123,7 @@
          <temporary>true</temporary>
          <online>true</online>
          <status>0</status>
-         <size unit="MB">30042</size>
+         <size unit="MB">300</size>
          <reuse>true</reuse>
          <autoExtend>true</autoExtend>
          <increment unit="KB">1024</increment>
@@ -134,7 +134,7 @@
          <temporary>false</temporary>
          <online>true</online>
          <status>0</status>
-         <size unit="MB">6400</size>
+         <size unit="MB">64</size>
          <reuse>true</reuse>
          <autoExtend>true</autoExtend>
          <increment unit="MB">128</increment>
