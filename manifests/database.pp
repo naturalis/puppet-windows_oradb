@@ -36,7 +36,7 @@ define windows_oradb::database (
   exec { "Create database ${title}":
     command   => "cmd.exe /c \"$oracleHome\\BIN\\dbca -silent -responseFile C:\\Install\\dbca_$title.rsp\"",
     path      => $::path,
-    onlyif    => "cmd.exe /c dir $oracleBase/admin/$dbName",
+    #onlyif    => "cmd.exe /c dir $oracleBase/admin/$dbName",
     require   => [File["${installFolder}/dbca_${title}.rsp"],
                   File["${oracleHome}/assistants/dbca/templates/${templateName}"]],
     logoutput => true,
