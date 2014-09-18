@@ -38,5 +38,9 @@ define windows_oradb::net (
     logoutput => true,
     timeout   => 0,
   }
+  
+  notify {"Please register listener in database: sqlplus> alter system set local_listener=${title} scope=both;": 
+  }
+
 
 }
