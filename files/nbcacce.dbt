@@ -22,7 +22,6 @@
    <CustomScripts Execute="false"/>
    <InitParamAttributes>
       <InitParams>
-         <initParam name="db_file_name_convert" value="D:\DATA\SYSTEM\ORACLE_DB\NBCPROD, D:\DATA\SYSTEM\ORACLE_DB\NBCACCE"/>
          <initParam name="db_name" value=""/>
          <initParam name="dispatchers" value="(PROTOCOL=TCP) (SERVICE={SID}XDB)"/>
          <initParam name="memory_max_target" value="5368709120"/>
@@ -69,7 +68,7 @@
          <temporary>false</temporary>
          <online>true</online>
          <status>0</status>
-         <size unit="MB">22528</size>
+         <size unit="MB">225</size>
          <reuse>true</reuse>
          <autoExtend>true</autoExtend>
          <increment unit="MB">128</increment>
@@ -80,7 +79,7 @@
          <temporary>false</temporary>
          <online>true</online>
          <status>0</status>
-         <size unit="MB">12288</size>
+         <size unit="MB">122</size>
          <reuse>true</reuse>
          <autoExtend>true</autoExtend>
          <increment unit="MB">128</increment>
@@ -91,7 +90,7 @@
          <temporary>false</temporary>
          <online>true</online>
          <status>0</status>
-         <size unit="MB">1862</size>
+         <size unit="MB">186</size>
          <reuse>true</reuse>
          <autoExtend>true</autoExtend>
          <increment unit="KB">8</increment>
