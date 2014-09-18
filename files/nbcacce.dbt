@@ -29,7 +29,6 @@
          <initParam name="compatible" value="11.2.0.0.0"/>
          <initParam name="remote_login_passwordfile" value="EXCLUSIVE"/>
          <initParam name="processes" value="300"/>
-         <initParam name="log_file_name_convert" value="D:\DATA\SYSTEM\ORACLE_REDO\NBCPROD, D:\DATA\SYSTEM\ORACLE_REDO\NBCACCE"/>
          <initParam name="undo_tablespace" value="UNDOTBS1"/>
          <initParam name="control_files" value=""/>
          <initParam name="diagnostic_dest" value="F:\DATA\SYSTEM"/>
