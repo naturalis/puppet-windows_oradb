@@ -39,6 +39,7 @@ define windows_oradb::database (
     unless    => "cmd.exe /c \"dir $oracleBase\\admin\\$dbName\"",
     require   => [File["${installFolder}/dbca_${title}.rsp"],
                   File["${oracleHome}/assistants/dbca/templates/${templateName}"]],
+    creates   => "$oracleBase/admin/$dbName",
     logoutput => true,
     timeout   => 0,
   }
