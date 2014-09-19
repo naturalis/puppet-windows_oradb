@@ -35,7 +35,7 @@
          <initParam name="db_recovery_file_dest" value="E:\Data\System\Oracle_FRA"/>
          <initParam name="audit_trail" value="DB"/>
          <initParam name="log_archive_format" value="ARC%S_%R.%T"/>
-         <initParam name="memory_target" value="12884901888"/>
+         <initParam name="memory_target" value="1G"/>
          <initParam name="sessions" value="472"/>
          <initParam name="db_block_size" value="8192"/>
          <initParam name="dbwr_io_slaves" value="2"/>
