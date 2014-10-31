@@ -21,7 +21,6 @@ define windows_oradb::installdb (
 
   file { "${installFolder}":
     ensure => 'directory',
-    type   => 'directory',
   }
 
   exec { "Extract zip file 1 for ${title}":
