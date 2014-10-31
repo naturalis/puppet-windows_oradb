@@ -19,10 +19,6 @@ define windows_oradb::installdb (
     fail("Unrecognized database install version, use 11.2.0.3")
   }
 
-  file { "${Installfolder}/${title}":
-    type   => 'directory',
-  }
-
   exec { "Extract zip file 1 for ${title}":
     command   => "7z.exe x -y \"$zipfilesFolder\\p10404530_112030_MSWIN-x86-64_1of7.zip\"",
     path      => "C:/Program Files/7-Zip;${::path}",
