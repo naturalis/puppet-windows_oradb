@@ -19,8 +19,7 @@ define windows_oradb::installdb (
     fail("Unrecognized database install version, use 11.2.0.3")
   }
 
-  file { "Installfolder for ${title}":
-    ensure => $installFolder,
+  file { "${Installfolder}/${title}":
     type   => 'directory',
   }
 
