@@ -25,7 +25,6 @@ define windows_oradb::installdb (
     cwd       => $installFolder,
     creates   => "$installFolder/database/setup.exe",
     logoutput => on_failure,
-    require   => File["${installFolder}"],
   }
 
   exec { "Extract zip file 2 for ${title}":
@@ -34,7 +33,6 @@ define windows_oradb::installdb (
     cwd       => $installFolder,
     creates   => "$installFolder/database/stage/Components/oracle.ctx",
     logoutput => on_failure,
-    require   => File["${installFolder}"],
   }
 
   file { "${installFolder}/installdb_${title}.rsp":
