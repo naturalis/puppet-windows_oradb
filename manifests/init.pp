@@ -35,7 +35,70 @@
 #
 # Copyright 2014 Your name here, unless otherwise noted.
 #
-class windows_oradb {
+class windows_oradb  (
+  $installdb_hash = {'nbcprod' => { # General
+                                    version        => '11.2.0.3',
+                                    #archiveFilename => 'p10404530_112030_MSWIN-x86-64',
+                                    installFolder  => 'C:/Install',
+                                    zipfilesFolder => 'C:/Zipfiles',
 
+                                    # Responsefile
+                                    oracleHome     => 'C:\Oracle_Sys\nbcprod\product\11.2\db',
+                                    oracleBase     => 'C:\Oracle_Sys\nbcprod',
+                                    databaseType   => 'SE',
+                                  },
+                    },
+
+  $database_hash  = {'nbcprod' => { # General
+                                    oracleHome     => 'C:\Oracle_Sys\nbcprod\product\11.2\db',
+                                    oracleBase     => 'C:\Oracle_Sys\nbcprod',
+                                    version        => '11.2.0.3',
+                                    installFolder  => 'C:/Install',
+
+                                    # Reponsefile
+                                    globalDbName   => 'nbcprod',
+                                    dbName         => 'nbcprod',
+                                    templateName   => 'nbcprod.dbt',
+                                    sysPassword    => 'Passw0rd',
+                                    systemPassword => 'Passw0rd',
+                                  },
+                     },
+
+  $net_hash       = {'listener_nbcprod' => { oracleHome        => 'C:\Oracle_Sys\nbcprod\product\11.2\db',
+                                             oracleBase        => 'C:\Oracle_Sys\nbcprod',
+                                             version           => '11.2.0.3',
+                                             installFolder     => 'C:/Install',
+                                             
+                                             # Reponsefile
+                                             installType       => 'custom', # "typical","minimal" or "custom", set to custom if using port other than 1521
+                                             listenerProtocols => 'TCP;1523',
+                                             nsnProtocol       => 'TCP',
+                                             nsnPort           => '1523',
+                                           },
+                    },
+) {
+
+  stage {'pre':
+  }
+
+  Stage['pre'] -> Stage['main']
+
+  class {"windows_role_base":
+    stage => 'pre',
+  }
+  
+  class {"windows_oradb::installdb":
+    installdb_hash => $installdb_hash,
+  }
+
+  class {"windows_oradb::database":
+    database_hash => $database_hash,
+    require       => Class['windows_oradb::installdb'],
+  }
+
+  class {"windows_oradb::net":
+    net_hash => $net_hash,
+    require  => Class['windows_oradb::database'],
+  }
 
 }
