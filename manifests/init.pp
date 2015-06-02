@@ -63,7 +63,8 @@ class windows_oradb  (
                                 },
                      },
 
-  $net_hash       = { 'orcl' => { oracleHome        => 'C:\app\oracle\product\11.2.0\dbhome_1',
+  $net_hash       = { 'orcl' => { # General
+                                  oracleHome        => 'C:\app\oracle\product\11.2.0\dbhome_1',
                                   oracleBase        => 'C:\app\oracle',
                                   version           => '11.2.0.3',
                                   installFolder     => 'C:/Install',
