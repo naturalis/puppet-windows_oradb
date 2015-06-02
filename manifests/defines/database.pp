@@ -1,12 +1,12 @@
 # == Define: windows_oradb::defines::database
 #
 define windows_oradb::defines::database ( 
-# General
+  # General
   $oracleHome     = undef,
   $oracleBase     = undef,
   $version        = undef,
   $installFolder  = undef,
-# Reponsefile
+  # Reponsefile
   $globalDbName   = undef,
   $dbName         = undef,
   $templateName   = undef,
@@ -18,21 +18,21 @@ define windows_oradb::defines::database (
     fail("Unrecognized database install version, use 11.2.0.3")
   }
 
-# Create response file
+  # Create response file
   file { "${installFolder}/dbca_${title}.rsp":
     ensure             => present,
     content            => template("windows_oradb/dbca_${version}.rsp.erb"),
     source_permissions => ignore,
   }
 
-# Copy templatefile to templates directory
+  # Copy templatefile to templates directory
   file { "${oracleHome}/assistants/dbca/templates/${templateName}":
     ensure             => present,
     source             => "puppet:///modules/windows_oradb/${templateName}",
     source_permissions => ignore,
   } 
   
-# Execute dbca command
+  # Execute dbca command
   exec { "Create database ${title}":
     command   => "cmd.exe /c \"$oracleHome\\BIN\\dbca -silent -responseFile C:\\Install\\dbca_$title.rsp\"",
     path      => $::path,
