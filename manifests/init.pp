@@ -43,37 +43,37 @@ class windows_oradb  (
                                     zipfilesFolder => 'C:/Zipfiles',
 
                                     # Responsefile
-                                    oracleHome     => 'C:\Oracle_Sys\nbcprod\product\11.2\db',
-                                    oracleBase     => 'C:\Oracle_Sys\nbcprod',
+                                    oracleHome     => 'C:\app\oracle\product\11.2.0\dbhome_1',
+                                    oracleBase     => 'C:\app\oracle',
                                     databaseType   => 'SE',
                                   },
                     },
 
   $database_hash  = {'nbcprod' => { # General
-                                    oracleHome     => 'C:\Oracle_Sys\nbcprod\product\11.2\db',
-                                    oracleBase     => 'C:\Oracle_Sys\nbcprod',
+                                    oracleHome     => 'C:\app\oracle\product\11.2.0\dbhome_1',
+                                    oracleBase     => 'C:\app\oracle',
                                     version        => '11.2.0.3',
                                     installFolder  => 'C:/Install',
 
                                     # Reponsefile
-                                    globalDbName   => 'nbcprod',
-                                    dbName         => 'nbcprod',
-                                    templateName   => 'nbcprod.dbt',
-                                    sysPassword    => 'Passw0rd',
-                                    systemPassword => 'Passw0rd',
+                                    globalDbName   => 'orcl',
+                                    dbName         => 'orcl',
+                                    templateName   => 'General_Purpose.dbc',
+                                    sysPassword    => 'tiger',
+                                    systemPassword => 'tiger',
                                   },
                      },
 
-  $net_hash       = {'listener_nbcprod' => { oracleHome        => 'C:\Oracle_Sys\nbcprod\product\11.2\db',
-                                             oracleBase        => 'C:\Oracle_Sys\nbcprod',
+  $net_hash       = {'listener_nbcprod' => { oracleHome        => 'C:\app\oracle\product\11.2.0\dbhome_1',
+                                             oracleBase        => 'C:\app\oracle',
                                              version           => '11.2.0.3',
                                              installFolder     => 'C:/Install',
                                              
                                              # Reponsefile
                                              installType       => 'custom', # "typical","minimal" or "custom", set to custom if using port other than 1521
-                                             listenerProtocols => 'TCP;1523',
+                                             listenerProtocols => 'TCP;1521',
                                              nsnProtocol       => 'TCP',
-                                             nsnPort           => '1523',
+                                             nsnPort           => '1521',
                                            },
                     },
 ) {
