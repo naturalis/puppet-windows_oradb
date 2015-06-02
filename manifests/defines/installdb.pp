@@ -2,14 +2,14 @@
 #
 define windows_oradb::defines::installdb (
 
-# General
+  # General
   $version        = undef,
 
-# Unzip
+  # Unzip
   $installFolder  = undef,
   $zipfilesFolder = undef,
 
-# Responsefile
+  # Responsefile
   $databaseType   = undef,
   $oracleBase     = undef,
   $oracleHome     = undef,
