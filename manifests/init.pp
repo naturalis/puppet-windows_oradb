@@ -36,7 +36,7 @@
 # Copyright 2014 Your name here, unless otherwise noted.
 #
 class windows_oradb  (
-  $installdb_hash = {'nbcprod' => { # General
+  $installdb_hash = {'dbhome_1' => { # General
                                     version        => '11.2.0.3',
                                     #archiveFilename => 'p10404530_112030_MSWIN-x86-64',
                                     installFolder  => 'C:/Install',
@@ -49,7 +49,7 @@ class windows_oradb  (
                                   },
                     },
 
-  $database_hash  = {'nbcprod' => { # General
+  $database_hash  = {'orcl' => { # General
                                     oracleHome     => 'C:\app\oracle\product\11.2.0\dbhome_1',
                                     oracleBase     => 'C:\app\oracle',
                                     version        => '11.2.0.3',
@@ -64,7 +64,7 @@ class windows_oradb  (
                                   },
                      },
 
-  $net_hash       = {'listener_nbcprod' => { oracleHome        => 'C:\app\oracle\product\11.2.0\dbhome_1',
+  $net_hash       = {'listener_orcl' => { oracleHome        => 'C:\app\oracle\product\11.2.0\dbhome_1',
                                              oracleBase        => 'C:\app\oracle',
                                              version           => '11.2.0.3',
                                              installFolder     => 'C:/Install',
