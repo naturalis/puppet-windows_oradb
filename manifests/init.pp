@@ -24,7 +24,6 @@
 # === Examples
 #
 #  class { windows_oradb:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
 #  }
 #
 # === Authors
@@ -37,15 +36,15 @@
 #
 class windows_oradb  (
   $installdb_hash = { 'dbhome_1' => { # General
-                                    version        => '11.2.0.3',
-                                    #archiveFilename => 'p10404530_112030_MSWIN-x86-64',
-                                    installFolder  => 'C:/Install',
-                                    zipfilesFolder => 'C:/Zipfiles',
+                                        version        => '11.2.0.3',
+                                        #archiveFilename => 'p10404530_112030_MSWIN-x86-64',
+                                        installFolder  => 'C:/Install',
+                                        zipfilesFolder => 'C:/Zipfiles',
 
-                                    # Responsefile
-                                    oracleHome     => 'C:\app\oracle\product\11.2.0\dbhome_1',
-                                    oracleBase     => 'C:\app\oracle',
-                                    databaseType   => 'SE',
+                                        # Responsefile
+                                        oracleHome   => 'C:\app\oracle\product\11.2.0\dbhome_1',
+                                        oracleBase   => 'C:\app\oracle',
+                                        databaseType => 'SE',
                                   },
                     },
 
