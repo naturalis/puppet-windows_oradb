@@ -39,7 +39,8 @@ define windows_oradb::defines::net (
     timeout   => 0,
   }
   
-  notify {"Register listener in database: sqlplus> alter system set local_listener=${title} scope=both;": 
+  notify {"Register listener in database: sqlplus> alter system set local_listener=${title} scope=both;":
+    require => Exec["Install Oracle net ${title}"]
   }
 
 }
