@@ -22,14 +22,14 @@ define windows_oradb::defines::net (
     fail("Unrecognized database install version, use 11.2.0.3")
   }
 
-# Create response file
+  # Create response file
   file { "${installFolder}/netca_${title}.rsp":
     ensure             => present,
     content            => template("windows_oradb/netca_${version}.rsp.erb"),
     source_permissions => ignore,
   }
 
-# Execute netca command
+  # Execute netca command
   exec { "Install Oracle net ${title}":
     command   => "cmd.exe /c \"$oracleHome\\BIN\\netca -silent -responseFile C:\\Install\\netca_$title.rsp\"",
     path      => $::path,
@@ -39,6 +39,7 @@ define windows_oradb::defines::net (
     timeout   => 0,
   }
   
+  # Manually register listener in database
   notify {"Register listener in database: sqlplus> alter system set local_listener=${title} scope=both;":
     require => Exec["Install Oracle net ${title}"]
   }
