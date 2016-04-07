@@ -91,14 +91,14 @@ class windows_oradb  (
     installdb_hash => $installdb_hash,
   }
 
-  class {"windows_oradb::database":
-    database_hash => $database_hash,
-    require       => Class['windows_oradb::installdb'],
-  }
+  #class {"windows_oradb::database":
+  #  database_hash => $database_hash,
+  #  require       => Class['windows_oradb::installdb'],
+  #}
 
-  class {"windows_oradb::net":
-    net_hash => $net_hash,
-    require  => Class['windows_oradb::database'],
-  }
+  #class {"windows_oradb::net":
+  #  net_hash => $net_hash,
+  #  require  => Class['windows_oradb::database'],
+  #}
 
 }
