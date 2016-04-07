@@ -25,11 +25,13 @@ define windows_oradb::defines::database (
     source_permissions => ignore,
   }
 
-  # Copy templatefile to templates directory
-  file { "${oracleHome}/assistants/dbca/templates/${templateName}":
-    ensure             => present,
-    source             => "puppet:///modules/windows_oradb/${templateName}",
-    source_permissions => ignore,
+  # If using custom templatefile, copy this file to templates directory
+  if ("cmd.exe /c \"dir ${installFolder}\\$templateName\"") {
+    file { "${oracleHome}/assistants/dbca/templates/${templateName}":
+      ensure             => present,
+      source             => "${installFolder}/${templateName}",
+      source_permissions => ignore,
+    }
   } 
   
   # Execute dbca command
