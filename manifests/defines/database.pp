@@ -27,12 +27,11 @@ define windows_oradb::defines::database (
   } ->
 
   # If using custom templatefile, copy this file to templates directory
-  if ("cmd.exe /c \"dir ${installFolder}\\$templateName\"") {
-    file { "${oracleHome}/assistants/dbca/templates/${templateName}":
-      ensure             => present,
-      source             => "${installFolder}/${templateName}",
-      source_permissions => ignore,
-    }
+  file { "${oracleHome}/assistants/dbca/templates/${templateName}":
+    ensure             => present,
+    source             => "${installFolder}/${templateName}",
+    source_permissions => ignore,
+    creates            => "${oracleHome}/assistants/dbca/templates/${templateName}",
   } ->
   
   # Execute dbca command
