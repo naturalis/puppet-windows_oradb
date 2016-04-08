@@ -12,6 +12,7 @@ define windows_oradb::defines::database (
   $templateName   = undef,
   $sysPassword    = undef,
   $systemPassword = undef,
+  $totalMemory    = undef,
   ) {
 
   if (!( $version == '11.2.0.3')){
