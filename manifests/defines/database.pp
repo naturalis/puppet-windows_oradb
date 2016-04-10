@@ -24,21 +24,22 @@ define windows_oradb::defines::database (
     ensure             => present,
     content            => template("windows_oradb/dbca_${version}.rsp.erb"),
     source_permissions => ignore,
-  } ->
+  }
 
-  # If using custom templatefile, copy this file to templates directory
+  # Copy templatefile to templates directory
   file { "${oracleHome}/assistants/dbca/templates/${templateName}":
     ensure             => present,
-    source             => "${installFolder}/${templateName}",
+    source             => "puppet:///modules/windows_oradb/${templateName}",
     source_permissions => ignore,
-    creates            => "${oracleHome}/assistants/dbca/templates/${templateName}",
-  } ->
+  } 
   
   # Execute dbca command
   exec { "Create database ${title}":
     command   => "cmd.exe /c \"$oracleHome\\BIN\\dbca -silent -responseFile C:\\Install\\dbca_$title.rsp\"",
     path      => $::path,
     unless    => "cmd.exe /c \"dir $oracleBase\\admin\\$dbName\"",
+    require   => [File["${installFolder}/dbca_${title}.rsp"],
+                  File["${oracleHome}/assistants/dbca/templates/${templateName}"]],
     creates   => "$oracleBase/admin/$dbName",
     logoutput => true,
     timeout   => 0,
