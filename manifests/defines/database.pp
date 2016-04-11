@@ -28,11 +28,11 @@ define windows_oradb::defines::database (
     source_permissions => ignore,
   } ->
 
-  if $templateCustom {
+  if $templateCustom == true {
     # Copy custom templatefile to templates directory
-    file { "${oracleHome}/assistants/dbca/templates/${templateCustom}":
+    file { "${oracleHome}/assistants/dbca/templates/${templateName}":
       ensure             => present,
-      source             => "${installFolder}/${templateCustom}",
+      source             => "${installFolder}/${templateName}",
       source_permissions => ignore,
     }
   } ->
