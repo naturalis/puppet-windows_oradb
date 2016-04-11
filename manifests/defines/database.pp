@@ -24,7 +24,7 @@ define windows_oradb::defines::database (
     ensure             => present,
     content            => template("windows_oradb/dbca_${version}.rsp.erb"),
     source_permissions => ignore,
-    before	           => Exec["Create database ${title}"]
+    before             => Exec["Create database ${title}"]
   }
 
   if $templateCustom == 'true' {
@@ -33,7 +33,7 @@ define windows_oradb::defines::database (
       ensure             => present,
       source             => "${installFolder}/${templateName}",
       source_permissions => ignore,
-      before	           => Exec["Create database ${title}"]
+      before             => Exec["Create database ${title}"]
     }
   }
   
