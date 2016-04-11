@@ -58,6 +58,7 @@ class windows_oradb  (
                                   globalDbName   => 'orcl',
                                   dbName         => 'orcl',
                                   templateName   => 'General_Purpose.dbc',
+                                  templateCustom => false,
                                   sysPassword    => 'tiger',
                                   systemPassword => 'tiger',
                                 },
