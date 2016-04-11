@@ -8,8 +8,9 @@ define windows_oradb::defines::database (
   $installFolder  = undef,
   # Reponsefile
   $globalDbName   = undef,
-  $dbName         = undef,
+  $dbName,
   $templateName   = undef,
+  $templateCustom = undef, # Copy your custom made templates to C:\Install folder
   $sysPassword    = undef,
   $systemPassword = undef,
   $totalMemory    = undef,
@@ -26,12 +27,14 @@ define windows_oradb::defines::database (
     source_permissions => ignore,
   }
 
-  # Copy templatefile to templates directory
-  file { "${oracleHome}/assistants/dbca/templates/${templateName}":
-    ensure             => present,
-    source             => "puppet:///modules/windows_oradb/${templateName}",
-    source_permissions => ignore,
-  } 
+  if $templateCustom {
+    # Copy custom templatefile to templates directory
+    file { "${oracleHome}/assistants/dbca/templates/${templateCustom}":
+      ensure             => present,
+      source             => "${installFolder}/${templateCustom}",
+      source_permissions => ignore,
+    }
+  }
   
   # Execute dbca command
   exec { "Create database ${title}":
