@@ -1,5 +1,3 @@
-# == Define: windows_oradb::defines::database
-#
 define windows_oradb::defines::database ( 
   # General
   $oracleHome     = undef,
@@ -9,7 +7,7 @@ define windows_oradb::defines::database (
 
   # Reponsefile
   $globalDbName   = undef,
-  $dbName,
+  $dbName		      = undef,
   $templateName   = undef,
   $templateCustom = undef, # Copy your custom made templates to C:\Install folder
   $sysPassword    = undef,
@@ -18,7 +16,7 @@ define windows_oradb::defines::database (
   ) {
 
   if (!( $version == '11.2.0.3')){
-    fail("Unrecognized database install version, use 11.2.0.3")
+    fail('Unrecognized database install version, use 11.2.0.3')
   }
 
   # Create response file
@@ -26,16 +24,18 @@ define windows_oradb::defines::database (
     ensure             => present,
     content            => template("windows_oradb/dbca_${version}.rsp.erb"),
     source_permissions => ignore,
-  } ->
+    before	           => Exec["Create database ${title}"]
+  }
 
-  if $templateCustom == true {
+  if $templateCustom == 'true' {
     # Copy custom templatefile to templates directory
     file { "${oracleHome}/assistants/dbca/templates/${templateName}":
       ensure             => present,
       source             => "${installFolder}/${templateName}",
       source_permissions => ignore,
+      before	           => Exec["Create database ${title}"]
     }
-  } ->
+  }
   
   # Execute dbca command
   exec { "Create database ${title}":
